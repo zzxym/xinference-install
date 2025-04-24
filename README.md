@@ -17,14 +17,14 @@ root 执行：创建系统级服务，适配/home/${TARGET_USER}路径
 同时支持 GPU 环境（目标用户需加入显卡驱动组）
 ### 使用示例
 ## 场景 1：当前用户部署（非 root）
-# bash
+
 # 直接运行（使用当前用户）
 ./xinference_deploy.sh
 
 # 服务管理（无需sudo）
 systemctl --user start xinference.service
 场景 2：指定目标用户（需 root 权限）
-bash
+
 # 以admin用户部署（需提前创建useradd -m admin）
 sudo ./xinference_deploy.sh admin
 
@@ -32,7 +32,7 @@ sudo ./xinference_deploy.sh admin
 sudo systemctl status xinference.service
 场景 3：完全自定义用户（生产环境推荐）
 创建专用服务用户：
-bash
+
 sudo useradd -m -s /sbin/nologin xinference_user  # 禁止登录的专用用户
 sudo ./xinference_deploy.sh xinference_user
 
@@ -59,7 +59,7 @@ systemd 服务通过Environment="HOME=/home/${TARGET_USER}"确保正确环境变
 系统级服务日志：journalctl -u xinference.service -f
 用户级服务日志：journalctl --user -u xinference.service -f
 可通过ExecStart添加日志输出重定向：
-bash
+
 ExecStart=/bin/bash -c "命令 >> /home/${TARGET_USER}/xinference.log 2>&1"
 
 

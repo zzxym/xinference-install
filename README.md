@@ -25,8 +25,8 @@ root 执行：创建系统级服务，适配/home/${TARGET_USER}路径
 systemctl --user start xinference.service
 ## 场景 2：指定目标用户（需 root 权限）
 
-# 以admin用户部署（需提前创建useradd -m admin）
-sudo ./xinference_deploy.sh admin
+# 以admin用户部署（需提前创建useradd -m ubuntu）
+sudo ./xinference_deploy.sh ubuntu
 
 # 系统级服务管理
 sudo systemctl status xinference.service

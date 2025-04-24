@@ -23,14 +23,14 @@ root 执行：创建系统级服务，适配/home/${TARGET_USER}路径
 
 # 服务管理（无需sudo）
 systemctl --user start xinference.service
-场景 2：指定目标用户（需 root 权限）
+## 场景 2：指定目标用户（需 root 权限）
 
 # 以admin用户部署（需提前创建useradd -m admin）
 sudo ./xinference_deploy.sh admin
 
 # 系统级服务管理
 sudo systemctl status xinference.service
-场景 3：完全自定义用户（生产环境推荐）
+## 场景 3：完全自定义用户（生产环境推荐）
 创建专用服务用户：
 
 sudo useradd -m -s /sbin/nologin xinference_user  # 禁止登录的专用用户
@@ -48,7 +48,7 @@ systemd 服务通过Environment="HOME=/home/${TARGET_USER}"确保正确环境变
 权限最小化
 禁止以 root 用户作为目标用户（User=root存在安全风险）
 专用服务用户可通过-s /sbin/nologin限制登录权限，提升安全性
-注意事项
+## 注意事项
 用户创建要求
 目标用户必须提前创建（useradd -m ${TARGET_USER}）
 推荐使用非登录用户（-s /sbin/nologin）运行服务，降低攻击面

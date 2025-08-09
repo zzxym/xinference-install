@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  xinference:
+    image: xprobe/xinference:latest-cpu
+    container_name: xinference
+    restart: always
+    environment:
+      - XINFERENCE_HOME=/xinference
+      - PUID=1000
+      - PGID=1000
+    ports:
+      - "9997:9997"
+    volumes:
+      - ./data/.xinference:/root/.xinference
+      - ./data/.cache/huggingface:/root/.cache/huggingface
+      - ./data/xinference:/xinference
+      - ./data/log:/workspace/xinference/logs
+      - ./data/scripts:/scripts
+    command: bash -c "chmod +x /scripts/startup.sh && /scripts/startup.sh"
+
+    
